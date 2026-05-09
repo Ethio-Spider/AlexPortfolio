@@ -3,108 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio</title>
+  <title>Professional Portfolio</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <h1>My Portfolio</h1>
-    <p>Web Developer | Designer | Creator</p>
+  <!-- NAVBAR -->
+  <header class="header">
+    <div class="logo">DevPortfolio</div>
 
-    <nav>
-      <a href="#about">About</a> |
-      <a href="#skills">Skills</a> |
-      <a href="#projects">Projects</a> |
+    <nav id="nav" class="nav">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
+
+    <div class="menu" onclick="toggleMenu()">☰</div>
   </header>
 
-  <hr>
-
-  <!-- HERO SECTION -->
-  <section>
-    <h2>Welcome</h2>
-    <p>Hello! I'm a passionate developer building modern web experiences.</p>
-    <p>Scroll down to learn more about me and my work.</p>
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Hi, I'm <span>Frontend Developer</span></h1>
+      <p>I design and build modern, responsive, high-performance web experiences.</p>
+      <a href="#projects" class="btn">View My Work</a>
+    </div>
   </section>
 
-  <hr>
-
   <!-- ABOUT -->
-  <section id="about">
+  <section id="about" class="section">
     <h2>About Me</h2>
     <p>
-      I am a web developer skilled in creating websites and applications using modern technologies.
-      I enjoy solving problems and building clean user experiences.
+      I am a passionate web developer focused on building scalable and clean UI designs.
+      I enjoy turning ideas into real digital products with modern technologies.
     </p>
   </section>
 
-  <hr>
-
   <!-- SKILLS -->
-  <section id="skills">
+  <section id="skills" class="section dark">
     <h2>Skills</h2>
 
-    <ul>
-      <li>HTML5</li>
-      <li>CSS3 (basic)</li>
-      <li>JavaScript</li>
-      <li>Responsive Design</li>
-      <li>Git & GitHub</li>
-    </ul>
+    <div class="grid">
+      <div class="card">HTML5</div>
+      <div class="card">CSS3</div>
+      <div class="card">JavaScript</div>
+      <div class="card">React</div>
+      <div class="card">Git</div>
+      <div class="card">UI Design</div>
+    </div>
   </section>
-
-  <hr>
 
   <!-- PROJECTS -->
-  <section id="projects">
+  <section id="projects" class="section">
     <h2>Projects</h2>
 
-    <article>
-      <h3>Portfolio Website</h3>
-      <p>A personal portfolio website built using HTML and CSS.</p>
-    </article>
+    <div class="projects">
+      <div class="project-card">
+        <h3>Portfolio Website</h3>
+        <p>Modern responsive personal portfolio with clean UI.</p>
+      </div>
 
-    <article>
-      <h3>Todo App</h3>
-      <p>A simple task management app to track daily activities.</p>
-    </article>
+      <div class="project-card">
+        <h3>E-Commerce UI</h3>
+        <p>Shopping interface with smooth UX and modern layout.</p>
+      </div>
 
-    <article>
-      <h3>Blog Platform</h3>
-      <p>A basic blogging system with user posts and categories.</p>
-    </article>
+      <div class="project-card">
+        <h3>Dashboard System</h3>
+        <p>Admin dashboard with analytics and data visualization.</p>
+      </div>
+    </div>
   </section>
 
-  <hr>
-
   <!-- CONTACT -->
-  <section id="contact">
+  <section id="contact" class="section dark">
     <h2>Contact Me</h2>
 
-    <form>
-      <label>Name:</label><br>
-      <input type="text" name="name"><br><br>
-
-      <label>Email:</label><br>
-      <input type="email" name="email"><br><br>
-
-      <label>Message:</label><br>
-      <textarea name="message" rows="5" cols="30"></textarea><br><br>
-
-      <button type="submit">Send</button>
+    <form class="form">
+      <input type="text" placeholder="Your Name">
+      <input type="email" placeholder="Your Email">
+      <textarea placeholder="Your Message"></textarea>
+      <button type="submit">Send Message</button>
     </form>
   </section>
 
-  <hr>
-
   <!-- FOOTER -->
   <footer>
-    <p>© 2026 My Portfolio. All rights reserved.</p>
-    <p>Built with pure HTML5</p>
+    <p>© 2026 DevPortfolio — All Rights Reserved</p>
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
