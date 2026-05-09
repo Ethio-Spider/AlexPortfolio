@@ -1,47 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
 </head>
+
 <body>
 
-<div class="calculator">
+  <!-- HEADER -->
+  <header>
+    <h1>My Portfolio</h1>
+    <p>Web Developer | Designer | Creator</p>
 
-    <input type="text" id="display" disabled>
+    <nav>
+      <a href="#about">About</a> |
+      <a href="#skills">Skills</a> |
+      <a href="#projects">Projects</a> |
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <div class="buttons">
+  <hr>
 
-        <button onclick="appendValue('7')">7</button>
-        <button onclick="appendValue('8')">8</button>
-        <button onclick="appendValue('9')">9</button>
-        <button class="operator" onclick="appendValue('/')">/</button>
+  <!-- HERO SECTION -->
+  <section>
+    <h2>Welcome</h2>
+    <p>Hello! I'm a passionate developer building modern web experiences.</p>
+    <p>Scroll down to learn more about me and my work.</p>
+  </section>
 
-        <button onclick="appendValue('4')">4</button>
-        <button onclick="appendValue('5')">5</button>
-        <button onclick="appendValue('6')">6</button>
-        <button class="operator" onclick="appendValue('*')">*</button>
+  <hr>
 
-        <button onclick="appendValue('1')">1</button>
-        <button onclick="appendValue('2')">2</button>
-        <button onclick="appendValue('3')">3</button>
-        <button class="operator" onclick="appendValue('-')">-</button>
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I am a web developer skilled in creating websites and applications using modern technologies.
+      I enjoy solving problems and building clean user experiences.
+    </p>
+  </section>
 
-        <button onclick="appendValue('0')">0</button>
-        <button onclick="appendValue('.')">.</button>
-        <button class="equal" onclick="calculate()">=</button>
-        <button class="operator" onclick="appendValue('+')">+</button>
+  <hr>
 
-        <button class="clear" onclick="clearDisplay()">C</button>
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
 
-    </div>
+    <ul>
+      <li>HTML5</li>
+      <li>CSS3 (basic)</li>
+      <li>JavaScript</li>
+      <li>Responsive Design</li>
+      <li>Git & GitHub</li>
+    </ul>
+  </section>
 
-</div>
+  <hr>
 
-<script src="script.js"></script>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <article>
+      <h3>Portfolio Website</h3>
+      <p>A personal portfolio website built using HTML and CSS.</p>
+    </article>
+
+    <article>
+      <h3>Todo App</h3>
+      <p>A simple task management app to track daily activities.</p>
+    </article>
+
+    <article>
+      <h3>Blog Platform</h3>
+      <p>A basic blogging system with user posts and categories.</p>
+    </article>
+  </section>
+
+  <hr>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+
+    <form>
+      <label>Name:</label><br>
+      <input type="text" name="name"><br><br>
+
+      <label>Email:</label><br>
+      <input type="email" name="email"><br><br>
+
+      <label>Message:</label><br>
+      <textarea name="message" rows="5" cols="30"></textarea><br><br>
+
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <hr>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 My Portfolio. All rights reserved.</p>
+    <p>Built with pure HTML5</p>
+  </footer>
 
 </body>
 </html>
