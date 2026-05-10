@@ -1,0 +1,30 @@
+{
+  "name": "alemneh-portfolio",
+  "version": "1.0.0",
+  "description": "Professional portfolio website for Alemneh",
+  "main": "index.html",
+  "scripts": {
+    "dev": "http-server",
+    "build": "echo 'No build process required'",
+    "start": "http-server -p 8000"
+  },
+  "keywords": [
+    "portfolio",
+    "web developer",
+    "frontend",
+    "backend",
+    "responsive"
+  ],
+  "author": "Alemneh",
+  "email": "alemnehenawgaw912@gmail.com",
+  "github": "https://github.com/Ethio-Spider",
+  "linkedin": "https://www.linkedin.com/in/alemneh-e-051152388",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ethio-Spider/AlexPortfolio.git"
+  }
+}
