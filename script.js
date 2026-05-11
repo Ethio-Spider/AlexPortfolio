@@ -35,7 +35,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // =============================
 // HERO TYPING EFFECT
 // =============================
-const subtitleText = "I am frontend developer and cisco network";
+const subtitleText = "I am a frontend developer and network specialist";
 let subtitleIndex = 0;
 
 function typeEffect() {
@@ -51,7 +51,7 @@ function typeEffect() {
   if (subtitleIndex <= subtitleText.length) {
     subtitleSpan.textContent = subtitleText.slice(0, subtitleIndex);
     subtitleIndex++;
-    setTimeout(typeEffect, 100);
+    setTimeout(typeEffect, 50);
   }
 }
 
@@ -177,8 +177,10 @@ function validateForm() {
 
 function showError(elementId, message) {
   const errorElement = document.getElementById(elementId);
-  errorElement.textContent = message;
-  errorElement.style.display = 'block';
+  if (errorElement) {
+    errorElement.textContent = message;
+    errorElement.style.display = 'block';
+  }
 }
 
 function clearErrors() {
@@ -191,13 +193,15 @@ function clearErrors() {
 
 function showMessage(message, type) {
   const messageElement = document.getElementById('formMessage');
-  messageElement.textContent = message;
-  messageElement.className = type;
-  messageElement.style.display = 'block';
+  if (messageElement) {
+    messageElement.textContent = message;
+    messageElement.className = type;
+    messageElement.style.display = 'block';
 
-  setTimeout(() => {
-    messageElement.style.display = 'none';
-  }, 5000);
+    setTimeout(() => {
+      messageElement.style.display = 'none';
+    }, 5000);
+  }
 }
 
 // =============================
@@ -215,171 +219,234 @@ function animateProgressBars() {
 }
 
 // =============================
-// INITIALIZE
+// ANIMATED COUNTERS
+// =============================
+function initCounters() {
+  document.querySelectorAll('.counter').forEach(counter => {
+    const updateCounter = () => {
+      const target = +counter.getAttribute('data-target');
+      const current = +counter.innerText;
+      const increment = target / 100;
+
+      if (current < target) {
+        counter.innerText = `${Math.ceil(current + increment)}`;
+        setTimeout(updateCounter, 20);
+      } else {
+        counter.innerText = target;
+      }
+    };
+
+    updateCounter();
+  });
+}
+
+// =============================
+// PROJECT FILTERING
+// =============================
+function initProjectFiltering() {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach(b => b.classList.remove('active-filter'));
+      btn.classList.add('active-filter');
+      
+      const filter = btn.getAttribute('data-filter');
+      projectCards.forEach(card => {
+        if (filter === 'all') {
+          card.style.display = 'block';
+        } else {
+          // Add data-filter attribute to project cards if needed
+          card.style.display = card.getAttribute('data-filter') === filter ? 'block' : 'none';
+        }
+      });
+    });
+  });
+}
+
+// =============================
+// CUSTOM CURSOR
+// =============================
+function initCustomCursor() {
+  const cursor = document.querySelector('.custom-cursor');
+  if (!cursor) return;
+
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+
+  document.addEventListener('mouseenter', () => {
+    cursor.style.opacity = '1';
+  });
+
+  document.addEventListener('mouseleave', () => {
+    cursor.style.opacity = '0';
+  });
+}
+
+// =============================
+// PARTICLE BACKGROUND ANIMATION
+// =============================
+function initParticles() {
+  const canvas = document.getElementById('particles-bg');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let particles = [];
+
+  for(let i = 0; i < 70; i++){
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 3,
+      dx: Math.random() - 0.5,
+      dy: Math.random() - 0.5
+    });
+  }
+
+  function animateParticles(){
+    if (!ctx) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0, 212, 255, 0.5)';
+      ctx.fill();
+
+      p.x += p.dx;
+      p.y += p.dy;
+
+      if(p.x < 0 || p.x > canvas.width) p.dx *= -1;
+      if(p.y < 0 || p.y > canvas.height) p.dy *= -1;
+    });
+
+    requestAnimationFrame(animateParticles);
+  }
+
+  animateParticles();
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+}
+
+// =============================
+// SCROLL REVEAL ANIMATION
+// =============================
+function initScrollReveal() {
+  const revealElements = document.querySelectorAll('.section, .project-card, .timeline-item');
+
+  function revealOnScroll(){
+    revealElements.forEach(el => {
+      const elementTop = el.getBoundingClientRect().top;
+      if(elementTop < window.innerHeight - 100){
+        el.classList.add('show');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealOnScroll);
+  revealOnScroll();
+}
+
+// =============================
+// ACTIVE NAVIGATION HIGHLIGHT
+// =============================
+function initActiveNav() {
+  const sectionElements = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  function updateActiveNav(){
+    let current = '';
+    sectionElements.forEach(section => {
+      const sectionTop = section.offsetTop - 200;
+      if(window.pageYOffset >= sectionTop){
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if(link.getAttribute('href') === '#' + current){
+        link.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav);
+  updateActiveNav();
+}
+
+// =============================
+// THEME PERSISTENCE
+// =============================
+function initThemePersistence() {
+  const modeToggle = document.getElementById('mode-toggle');
+  const savedTheme = localStorage.getItem('theme');
+
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-mode');
+  }
+
+  updateThemeButton();
+
+  if (modeToggle) {
+    modeToggle.addEventListener('click', () => {
+      toggleMode();
+      const isLight = document.body.classList.contains('light-mode');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+  }
+}
+
+// =============================
+// INTERSECTION OBSERVER FOR COUNTERS
+// =============================
+function initCounterObserver() {
+  const countersSection = document.getElementById('counters');
+  if (!countersSection) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+        initCounters();
+        entry.target.classList.add('counted');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(countersSection);
+}
+
+// =============================
+// INITIALIZE ALL FUNCTIONS
 // =============================
 window.addEventListener('load', () => {
   typeEffect();
-  revealOnScroll();
+  initScrollReveal();
   animateProgressBars();
-});
-
-// Animated Counters
-document.querySelectorAll('.counter').forEach(counter => {
-  const updateCounter = () => {
-    const target = +counter.getAttribute('data-target');
-    const current = +counter.innerText;
-    const increment = target / 100;
-
-    if (current < target) {
-      counter.innerText = `${Math.ceil(current + increment)}`;
-      setTimeout(updateCounter, 20);
-    } else {
-      counter.innerText = target;
-    }
-  };
-
-  updateCounter();
-});
-
-// Project Filtering
-const filterButtons = document.querySelectorAll('.filter-btn');
-
-filterButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    filterButtons.forEach(b => b.classList.remove('active-filter'));
-    btn.classList.add('active-filter');
-  });
-});
-
-// Custom Cursor
-const cursor = document.querySelector('.custom-cursor');
-
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-});
-
-// Simple Particle Background
-const canvas = document.getElementById('particles-bg');
-const ctx = canvas.getContext('2d');
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-
-for(let i = 0; i < 70; i++){
-  particles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    radius: Math.random() * 3,
-    dx: Math.random() - 0.5,
-    dy: Math.random() - 0.5
-  });
-}
-
-function animateParticles(){
-  if (!ctx) return;
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  particles.forEach(p => {
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
-    ctx.fillStyle = '#00d4ff';
-    ctx.fill();
-
-    p.x += p.dx;
-    p.y += p.dy;
-
-    if(p.x < 0 || p.x > canvas.width) p.dx *= -1;
-    if(p.y < 0 || p.y > canvas.height) p.dy *= -1;
-  });
-
-  requestAnimationFrame(animateParticles);
-}
-
-animateParticles();
-
-window.addEventListener('resize', () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
-
-
-// Scroll Reveal Animation
-const revealElements = document.querySelectorAll('.section, .project-card, .timeline-item');
-
-function revealOnScroll(){
-  revealElements.forEach(el => {
-    const elementTop = el.getBoundingClientRect().top;
-    if(elementTop < window.innerHeight - 100){
-      el.classList.add('show');
-    }
-  });
-}
-
-window.addEventListener('scroll', revealOnScroll);
-revealOnScroll();
-
-// Active Navigation Highlight
-const sectionElements = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav-link');
-
-function updateActiveNav(){
-  let current = '';
-  sectionElements.forEach(section => {
-    const sectionTop = section.offsetTop - 200;
-    if(pageYOffset >= sectionTop){
-      current = section.getAttribute('id');
-    }
-  });
-
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if(link.getAttribute('href') === '#' + current){
-      link.classList.add('active');
-    }
-  });
-}
-
-window.addEventListener('scroll', updateActiveNav);
-updateActiveNav();
-
-// Theme Persistence
-const modeToggle = document.getElementById('mode-toggle');
-const savedTheme = localStorage.getItem('theme');
-
-if (savedTheme === 'light') {
-  document.body.classList.add('light-mode');
-}
-
-updateThemeButton();
-
-if (modeToggle) {
-  modeToggle.addEventListener('click', () => {
-    toggleMode();
-    const isLight = document.body.classList.contains('light-mode');
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-  });
-}
-
-window.addEventListener('load', () => {
-  typeEffect();
-  revealOnScroll();
-  animateProgressBars();
-  updateActiveNav();
+  initActiveNav();
   updateThemeButton();
+  initCounters();
+  initProjectFiltering();
+  initCustomCursor();
+  initParticles();
+  initThemePersistence();
+  initCounterObserver();
 });
 
-const genericContactForm = document.querySelector('form');
-if (genericContactForm) {
-  genericContactForm.addEventListener('submit', () => {
-    const popup = document.getElementById('success-popup');
-    if (popup) {
-      popup.classList.add('show-popup');
-      setTimeout(() => {
-        popup.classList.remove('show-popup');
-      }, 3000);
-    }
-  });
-}
+// Initialize on DOM ready as well
+document.addEventListener('DOMContentLoaded', () => {
+  // Additional initialization if needed
+  console.log('Portfolio loaded successfully!');
+});
