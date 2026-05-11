@@ -33,10 +33,21 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 
 // =============================
-// HERO TYPING EFFECT
+// HERO TYPING EFFECT WITH LOOP
 // =============================
-const subtitleText = "I am a frontend developer and network specialist";
+const subtitleTexts = [
+  "I am a frontend developer",
+  "I am a Cisco network specialist",
+  "I am a full-stack developer",
+  "I am a problem solver"
+];
+
+let currentTextIndex = 0;
 let subtitleIndex = 0;
+let isDeleting = false;
+let typingSpeed = 50;
+let deletingSpeed = 30;
+let delayBeforeDelete = 2000; // Wait 2 seconds before deleting
 
 function typeEffect() {
   const heroSpan = document.querySelector('.typing');
@@ -47,11 +58,32 @@ function typeEffect() {
   // Show name instantly without animation
   heroSpan.textContent = "Alemneh";
 
-  // Type subtitle with animation
-  if (subtitleIndex <= subtitleText.length) {
-    subtitleSpan.textContent = subtitleText.slice(0, subtitleIndex);
-    subtitleIndex++;
-    setTimeout(typeEffect, 50);
+  const currentText = subtitleTexts[currentTextIndex];
+
+  if (!isDeleting) {
+    // Typing mode
+    if (subtitleIndex <= currentText.length) {
+      subtitleSpan.textContent = currentText.slice(0, subtitleIndex);
+      subtitleIndex++;
+      setTimeout(typeEffect, typingSpeed);
+    } else {
+      // Text is complete, wait before deleting
+      isDeleting = true;
+      setTimeout(typeEffect, delayBeforeDelete);
+    }
+  } else {
+    // Deleting mode
+    if (subtitleIndex > 0) {
+      subtitleIndex--;
+      subtitleSpan.textContent = currentText.slice(0, subtitleIndex);
+      setTimeout(typeEffect, deletingSpeed);
+    } else {
+      // Move to next text
+      isDeleting = false;
+      currentTextIndex = (currentTextIndex + 1) % subtitleTexts.length;
+      subtitleIndex = 0;
+      setTimeout(typeEffect, 500); // Delay before typing next text
+    }
   }
 }
 
