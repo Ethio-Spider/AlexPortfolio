@@ -131,8 +131,8 @@ window.addEventListener('scroll', () => {
 // =============================
 // EMAILJS INITIALIZATION
 // =============================
-// Initialize EmailJS (you need to replace with your actual Public Key)
-emailjs.init("YOUR_PUBLIC_KEY_HERE");
+// Initialize EmailJS with your Public Key
+emailjs.init("SWMmMVaKvT0KNmuxq");
 
 // =============================
 // FORM VALIDATION & EMAIL SUBMISSION
@@ -154,37 +154,37 @@ if (contactForm) {
       const subject = document.getElementById('subject').value;
       const message = document.getElementById('message').value;
       
-      // Send email using EmailJS
-      emailjs.send("YOUR_SERVICE_ID_HERE", "YOUR_TEMPLATE_ID_HERE", {
-        to_email: "alemnehenawgaw912@gmail.com", // Your email
+      // Send email to admin (you) with contact details
+      emailjs.send("service_m1iv3rc", "template_o4vilqz", {
+        to_email: "alemnehenawgaw912@gmail.com",
         from_name: name,
         from_email: email,
         subject: subject,
         message: message
       }).then(function(response) {
-        console.log('SUCCESS', response.status, response.text);
+        console.log('Admin email sent successfully', response.status, response.text);
         
-        // Send confirmation email to visitor
-        emailjs.send("YOUR_SERVICE_ID_HERE", "YOUR_CONFIRMATION_TEMPLATE_ID", {
+        // Send auto-reply confirmation email to visitor
+        emailjs.send("service_m1iv3rc", "template_thh2rl3", {
           to_email: email,
           to_name: name,
           subject: subject
         }).then(function(response) {
-          console.log('Confirmation email sent', response.status);
+          console.log('Confirmation email sent to visitor', response.status);
           showMessage('Message sent successfully! I will get back to you soon.', 'success');
           contactForm.reset();
           clearErrors();
           submitBtn.disabled = false;
           submitBtn.textContent = originalText;
         }).catch(function(error) {
-          console.log('FAILED to send confirmation...', error);
-          showMessage('Message received! (Confirmation email failed)', 'success');
+          console.log('Confirmation email failed...', error);
+          showMessage('Message received! (Confirmation email may have failed)', 'success');
           submitBtn.disabled = false;
           submitBtn.textContent = originalText;
         });
       }, function(error) {
-        console.log('FAILED...', error);
-        showMessage('Failed to send message. Please try again or email me directly.', 'error');
+        console.log('Admin email failed...', error);
+        showMessage('Failed to send message. Please try again or email me directly at alemnehenawgaw912@gmail.com', 'error');
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
       });
