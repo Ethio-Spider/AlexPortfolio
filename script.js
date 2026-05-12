@@ -129,6 +129,12 @@ window.addEventListener('scroll', () => {
 });
 
 // =============================
+// EMAILJS INITIALIZATION
+// =============================
+// Initialize EmailJS (you need to replace with your actual Public Key)
+emailjs.init("YOUR_PUBLIC_KEY_HERE");
+
+// =============================
 // FORM VALIDATION & EMAIL SUBMISSION
 // =============================
 const contactForm = document.getElementById('contactForm');
@@ -142,25 +148,42 @@ if (contactForm) {
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
       
-      // Use Formspree to submit the form
-      fetch(contactForm.action, {
-        method: 'POST',
-        body: new FormData(contactForm),
-        headers: {
-          'Accept': 'application/json'
-        }
-      }).then(response => {
-        if (response.ok) {
+      // Get form data
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      
+      // Send email using EmailJS
+      emailjs.send("YOUR_SERVICE_ID_HERE", "YOUR_TEMPLATE_ID_HERE", {
+        to_email: "alemnehenawgaw912@gmail.com", // Your email
+        from_name: name,
+        from_email: email,
+        subject: subject,
+        message: message
+      }).then(function(response) {
+        console.log('SUCCESS', response.status, response.text);
+        
+        // Send confirmation email to visitor
+        emailjs.send("YOUR_SERVICE_ID_HERE", "YOUR_CONFIRMATION_TEMPLATE_ID", {
+          to_email: email,
+          to_name: name,
+          subject: subject
+        }).then(function(response) {
+          console.log('Confirmation email sent', response.status);
           showMessage('Message sent successfully! I will get back to you soon.', 'success');
           contactForm.reset();
           clearErrors();
-        } else {
-          showMessage('Failed to send message. Please try again.', 'error');
-        }
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-      }).catch(error => {
-        console.log('Error:', error);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }).catch(function(error) {
+          console.log('FAILED to send confirmation...', error);
+          showMessage('Message received! (Confirmation email failed)', 'success');
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        });
+      }, function(error) {
+        console.log('FAILED...', error);
         showMessage('Failed to send message. Please try again or email me directly.', 'error');
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
