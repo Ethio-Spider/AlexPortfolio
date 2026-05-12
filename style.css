@@ -1291,3 +1291,41 @@ footer {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
+
+//additional visibility
+/* Initial state for your scroll animation */
+.section, .project-card, .timeline-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+/* State when the JavaScript 'show' class is added */
+.section.show, .project-card.show, .timeline-item.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+header, section, footer {
+    position: relative; 
+    z-index: 1; /* Places content in front of the z-index: -1 background */
+}
+.custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00d4ff;
+    border-radius: 50%;
+    pointer-events: none; /* CRITICAL: This lets you click buttons underneath the cursor */
+    z-index: 9999; /* Keeps the visual circle on top of everything */
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+}
+#particles-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* This moves it behind your sections */
+    pointer-events: none; /* Allows you to click things 'through' the particles */
+}
