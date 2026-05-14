@@ -29,7 +29,7 @@
   --secondary: #6c757d;
   --success: #28a745;
   --error: #dc3545;
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.055);
 }
 
 body {
@@ -1323,11 +1323,3 @@ footer {
     transform: translateY(0);
 }
 
-/*.section,
-.project-card,
-.timeline-item {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) !important;
-}
-    */
