@@ -189,6 +189,9 @@ body {
 /* Typing Animation Styles */
 .typing {
   /* Name appears instantly without cursor */
+  .selector {
+    display: block;
+}
 }
 
 .typing-subtitle {
@@ -1292,7 +1295,7 @@ footer {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-//additional visibility
+/*additional visibility */
 #particles-bg {
     position: fixed;
     top: 0;
@@ -1307,7 +1310,7 @@ footer {
 .section, 
 .project-card, 
 .timeline-item {
-    opacity: 0 !important;
+    opacity: 1 !important;
     transform: translateY(30px);
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
@@ -1319,3 +1322,12 @@ footer {
     opacity: 1 !important;
     transform: translateY(0);
 }
+
+/*.section,
+.project-card,
+.timeline-item {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+}
+    */

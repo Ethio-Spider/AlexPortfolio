@@ -132,8 +132,9 @@ window.addEventListener('scroll', () => {
 // EMAILJS INITIALIZATION
 // =============================
 // Initialize EmailJS with your Public Key
-emailjs.init("SWMmMVaKvT0KNmuxq");
-
+(function () {
+    emailjs.init("7f3JrIxsvQbrTXPN6");
+})();
 // =============================
 // FORM VALIDATION & EMAIL SUBMISSION
 // =============================
@@ -155,8 +156,8 @@ if (contactForm) {
       const message = document.getElementById('message').value;
       
       // Send email to admin (you) with contact details
-      emailjs.send("service_m1iv3rc", "template_o4vilqz", {
-        to_email: "alemnehenawgaw912@gmail.com",
+      emailjs.send("service_8vm5ajt", "template_iz32hlo", {
+        to_email: "amognehegnalemneh@gmail.com",
         from_name: name,
         from_email: email,
         subject: subject,
@@ -165,7 +166,7 @@ if (contactForm) {
         console.log('Admin email sent successfully', response.status, response.text);
         
         // Send auto-reply confirmation email to visitor
-        emailjs.send("service_m1iv3rc", "template_thh2rl3", {
+        emailjs.send("service_8vm5ajt", "template_iz32hlo", {
           to_email: email,
           to_name: name,
           subject: subject
@@ -184,14 +185,75 @@ if (contactForm) {
         });
       }, function(error) {
         console.log('Admin email failed...', error);
-        showMessage('Failed to send message. Please try again or email me directly at alemnehenawgaw912@gmail.com', 'error');
+        showMessage('Failed to send message. Please try again or email me directly at amognehegnalemneh@gmail.com', 'error');
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
       });
     }
   });
 }
+/*
+// Initialize EmailJS
+(function () {
+    emailjs.init("7f3JrIxsvQbrTXPN6");
+})();
 
+// Contact Form
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const submitBtn = document.querySelector(".submit-btn");
+        const originalText = submitBtn.textContent;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+
+        // Get form values
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const subject = document.getElementById("subject").value;
+        const message = document.getElementById("message").value;
+
+        // Send email to admin
+        emailjs.send("service_8vm5ajt", "template_iz32hlo", {
+            to_email:  "amognehegnalemneh@gmail.com",
+            from_name: name,
+            from_email: email,
+            subject: subject,
+            message: message
+        })
+
+        .then(function (response) {
+
+            console.log("Admin email sent successfully", response.status);
+
+            alert("Message sent successfully!");
+
+            contactForm.reset();
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+
+        })
+
+        .catch(function (error) {
+
+            console.log("Email failed...", error);
+
+            alert("Failed to send message");
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        });
+    });
+}
+*/
+//
+//
+//
 function validateForm() {
   let isValid = true;
   const name = document.getElementById('name');
