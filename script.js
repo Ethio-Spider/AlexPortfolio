@@ -132,6 +132,10 @@ window.addEventListener('scroll', () => {
 // EMAILJS INITIALIZATION
 // =============================
 // Initialize EmailJS with your Public Key
+
+
+
+/*
 (function () {
     emailjs.init("7f3JrIxsvQbrTXPN6");
 })();
@@ -192,65 +196,74 @@ if (contactForm) {
     }
   });
 }
-/*
+*/
+
 // Initialize EmailJS
 (function () {
-    emailjs.init("7f3JrIxsvQbrTXPN6");
+  emailjs.init("7f3JrIxsvQbrTXPN6");
 })();
 
 // Contact Form
 const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
-    contactForm.addEventListener("submit", function (e) {
-        e.preventDefault();
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-        const submitBtn = document.querySelector(".submit-btn");
-        const originalText = submitBtn.textContent;
+    if (!validateForm()) {
+      return;
+    }
 
-        submitBtn.disabled = true;
-        submitBtn.textContent = "Sending...";
+    const submitBtn = document.getElementById("submitBtn");
+    const originalText = submitBtn.textContent;
 
-        // Get form values
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const subject = document.getElementById("subject").value;
-        const message = document.getElementById("message").value;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
 
-        // Send email to admin
-        emailjs.send("service_8vm5ajt", "template_iz32hlo", {
-            to_email:  "amognehegnalemneh@gmail.com",
-            from_name: name,
-            from_email: email,
-            subject: subject,
-            message: message
-        })
+    // Get form values
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("message").value;
 
-        .then(function (response) {
+    // Send email
+    emailjs.send("service_8vm5ajt", "template_iz32hlo", {
+      to_email: "amognehegnalemneh@gmail.com",
+      from_name: name,
+      from_email: email,
+      subject: subject,
+      message: message
+    })
 
-            console.log("Admin email sent successfully", response.status);
+    .then(function(response) {
+      console.log("SUCCESS", response);
 
-            alert("Message sent successfully!");
+      showMessage(
+        "Message sent successfully!",
+        "success"
+      );
 
-            contactForm.reset();
+      contactForm.reset();
+      clearErrors();
 
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    })
 
-        })
+    .catch(function(error) {
+      console.log("FAILED", error);
 
-        .catch(function (error) {
+      showMessage(
+        "Failed to send message. Please try again.",
+        "error"
+      );
 
-            console.log("Email failed...", error);
-
-            alert("Failed to send message");
-
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
-        });
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
     });
+  });
 }
-*/
+
 //
 //
 //
