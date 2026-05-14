@@ -135,75 +135,18 @@ window.addEventListener('scroll', () => {
 
 
 
-/*
-(function () {
-    emailjs.init("7f3JrIxsvQbrTXPN6");
-})();
-// =============================
-// FORM VALIDATION & EMAIL SUBMISSION
-// =============================
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-  contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    if (validateForm()) {
-      const submitBtn = document.getElementById('submitBtn');
-      const originalText = submitBtn.textContent;
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
-      
-      // Get form data
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const subject = document.getElementById('subject').value;
-      const message = document.getElementById('message').value;
-      
-      // Send email to admin (you) with contact details
-      emailjs.send("service_8vm5ajt", "template_iz32hlo", {
-        to_email: "amognehegnalemneh@gmail.com",
-        from_name: name,
-        from_email: email,
-        subject: subject,
-        message: message
-      }).then(function(response) {
-        console.log('Admin email sent successfully', response.status, response.text);
-        
-        // Send auto-reply confirmation email to visitor
-        emailjs.send("service_8vm5ajt", "template_iz32hlo", {
-          to_email: email,
-          to_name: name,
-          subject: subject
-        }).then(function(response) {
-          console.log('Confirmation email sent to visitor', response.status);
-          showMessage('Message sent successfully! I will get back to you soon.', 'success');
-          contactForm.reset();
-          clearErrors();
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalText;
-        }).catch(function(error) {
-          console.log('Confirmation email failed...', error);
-          showMessage('Message received! (Confirmation email may have failed)', 'success');
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalText;
-        });
-      }, function(error) {
-        console.log('Admin email failed...', error);
-        showMessage('Failed to send message. Please try again or email me directly at amognehegnalemneh@gmail.com', 'error');
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-      });
-    }
-  });
-}
-*/
+
+
 
 // Initialize EmailJS
 (function () {
   emailjs.init("7f3JrIxsvQbrTXPN6");
 })();
 
-// Contact Form
+// =============================
+// FORM VALIDATION & EMAIL SUBMISSION
+// =============================
+
 const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
@@ -220,7 +163,106 @@ if (contactForm) {
     submitBtn.disabled = true;
     submitBtn.textContent = "Sending...";
 
-    // Get form values
+    // Get form data
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("message").value;
+
+    // =============================
+    // SEND EMAIL TO YOU
+    // =============================
+
+    emailjs.send("service_8vm5ajt", "template_iz32hlo", {
+      to_email: "amognehegnalemneh@gmail.com",
+      from_name: name,
+      from_email: email,
+      subject: subject,
+      message: message
+    })
+
+    .then(function (response) {
+
+      console.log("Admin email sent!", response.status);
+
+      // =============================
+      // AUTO REPLY TO VISITOR
+      // =============================
+
+      return emailjs.send(
+        "service_8vm5ajt",
+        "template_iz32hlo",
+        {
+          to_email: email,
+          from_name: "Alex Portfolio",
+          from_email: "amognehegnalemneh@gmail.com",
+          subject: "Thank you for contacting me!",
+          message:
+            "Hello " +
+            name +
+            ", thank you for reaching out through my portfolio website. I received your message and I will get back to you soon."
+        }
+      );
+    })
+
+    .then(function (response) {
+
+      console.log("Auto reply sent!", response.status);
+
+      showMessage(
+        "Message sent successfully! Please check your email for confirmation.",
+        "success"
+      );
+
+      contactForm.reset();
+      clearErrors();
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    })
+
+    .catch(function (error) {
+
+      console.log("FAILED...", error);
+
+      showMessage(
+        "Failed to send message. Please try again later.",
+        "error"
+      );
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    });
+  });
+}
+
+/*
+// Initialize EmailJS
+(function () {
+  emailjs.init("7f3JrIxsvQbrTXPN6");
+})();
+
+// =============================
+// FORM VALIDATION & EMAIL SUBMISSION
+// =============================
+
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    const submitBtn = document.getElementById("submitBtn");
+    const originalText = submitBtn.textContent;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+
+    // Get form data
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const subject = document.getElementById("subject").value;
@@ -235,11 +277,11 @@ if (contactForm) {
       message: message
     })
 
-    .then(function(response) {
-      console.log("SUCCESS", response);
+    .then(function (response) {
+      console.log("SUCCESS!", response.status, response.text);
 
       showMessage(
-        "Message sent successfully!",
+        "Message sent successfully! I will get back to you soon.",
         "success"
       );
 
@@ -250,11 +292,11 @@ if (contactForm) {
       submitBtn.textContent = originalText;
     })
 
-    .catch(function(error) {
-      console.log("FAILED", error);
+    .catch(function (error) {
+      console.log("FAILED...", error);
 
       showMessage(
-        "Failed to send message. Please try again.",
+        "Failed to send message. Please try again later.",
         "error"
       );
 
@@ -264,6 +306,8 @@ if (contactForm) {
   });
 }
 
+
+*/
 //
 //
 //
