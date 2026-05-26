@@ -46,7 +46,7 @@ let currentTextIndex = 0;
 let subtitleIndex = 0;
 let isDeleting = false;
 let typingSpeed = 25;
-let deletingSpeed = 30;
+let deletingSpeed = 15;
 let delayBeforeDelete = 2000; // Wait 2 seconds before deleting
 
 function typeEffect() {
