@@ -45,9 +45,9 @@ const subtitleTexts = [
 let currentTextIndex = 0;
 let subtitleIndex = 0;
 let isDeleting = false;
-let typingSpeed = 25;
-let deletingSpeed = 15;
-let delayBeforeDelete = 2000; // Wait 2 seconds before deleting
+let typingSpeed = 75;
+let deletingSpeed = 50;
+let delayBeforeDelete = 3000; // Wait 3 seconds before deleting
 
 function typeEffect() {
   const heroSpan = document.querySelector('.typing');
@@ -82,7 +82,7 @@ function typeEffect() {
       isDeleting = false;
       currentTextIndex = (currentTextIndex + 1) % subtitleTexts.length;
       subtitleIndex = 0;
-      setTimeout(typeEffect, 500); // Delay before typing next text
+      setTimeout(typeEffect, 800); // Delay before typing next text
     }
   }
 }
@@ -132,8 +132,6 @@ window.addEventListener('scroll', () => {
 // EMAILJS INITIALIZATION
 // =============================
 // Initialize EmailJS with your Public Key
-
-
 
 
 
@@ -317,7 +315,7 @@ function animateProgressBars() {
     bar.style.width = '0';
     setTimeout(() => {
       bar.style.width = width;
-    }, 500);
+    }, 1000);
   });
 }
 
@@ -329,11 +327,11 @@ function initCounters() {
     const updateCounter = () => {
       const target = +counter.getAttribute('data-target');
       const current = +counter.innerText;
-      const increment = target / 100;
+      const increment = target / 200;
 
       if (current < target) {
         counter.innerText = `${Math.ceil(current + increment)}`;
-        setTimeout(updateCounter, 20);
+        setTimeout(updateCounter, 50);
       } else {
         counter.innerText = target;
       }
@@ -409,8 +407,8 @@ function initParticles() {
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       radius: Math.random() * 3,
-      dx: Math.random() - 0.5,
-      dy: Math.random() - 0.5
+      dx: (Math.random() - 0.5) * 0.3,
+      dy: (Math.random() - 0.5) * 0.3
     });
   }
 
