@@ -5,6 +5,10 @@ Personal portfolio for Alemneh Enawgaw, an Information Technology student at Bah
 ## What is included
 
 - Responsive, accessible single-page portfolio with a light/dark theme.
+- Career-focused hero with availability status, positioning, quick facts, and a clear CV call to action.
+- Proof-of-work, learning journey, and conversion-focused contact sections.
+- Searchable and filterable GitHub project showcase with graceful API fallback.
+- Copy-email action, back-to-top control, mobile navigation, and reduced-motion support.
 - Accurate profile, education, skills, interests, and contact information from the current CV.
 - Live public project cards loaded from the GitHub API (`Ethio-Spider`).
 - Client-side contact form that opens a prefilled email draft without exposing a third-party service key.
