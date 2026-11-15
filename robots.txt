@@ -1,9 +1,4 @@
-# SEO Configuration
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://github.com/Ethio-Spider/AlexPortfolio/sitemap.xml
-
-# Crawl delay
-Crawl-delay: 1
+Sitemap: https://ethio-spider.github.io/AlexPortfolio/sitemap.xml
