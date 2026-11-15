@@ -4,7 +4,6 @@ build/
 
 # Dependencies
 node_modules/
-package-lock.json
 yarn.lock
 
 # IDE
@@ -30,3 +29,4 @@ npm-debug.log*
 # Cache
 .cache/
 .eslintcache
+.vercel

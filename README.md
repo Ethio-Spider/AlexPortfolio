@@ -4,7 +4,8 @@ Personal portfolio for Alemneh Enawgaw, an Information Technology student at Bah
 
 ## What is included
 
-- Responsive, accessible single-page portfolio with a light/dark theme.
+- Responsive, accessible React and TypeScript portfolio built with Vite.
+- Responsive single-page portfolio with a light/dark theme, animated sections, and mobile navigation.
 - Accurate profile, education, skills, interests, and contact information from the current CV.
 - Live public project cards loaded from the GitHub API (`Ethio-Spider`).
 - Client-side contact form that opens a prefilled email draft without exposing a third-party service key.
@@ -16,14 +17,21 @@ Personal portfolio for Alemneh Enawgaw, an Information Technology student at Bah
 ```bash
 git clone https://github.com/Ethio-Spider/AlexPortfolio.git
 cd AlexPortfolio
-python3 -m http.server 8000
+npm install
+npm run dev
 ```
 
-Open <http://localhost:8000>. GitHub project loading requires an internet connection; the page falls back to the profile link if the API is unavailable.
+Open the local Vite URL shown in the terminal. GitHub project loading requires an internet connection; the page falls back to the profile link if the API is unavailable.
+
+Create a production build with:
+
+```bash
+npm run build
+```
 
 ## Deployment
 
-The site is static and can be deployed with GitHub Pages, Netlify, Vercel, or any static hosting provider. For GitHub Pages, publish the `main` branch from the repository settings.
+The site can be deployed to Vercel or any static hosting provider. Vercel detects the Vite build automatically; the production output is generated in `dist/`.
 
 ## Contact
 
