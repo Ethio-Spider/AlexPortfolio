@@ -1,0 +1,30 @@
+7b7b2f4 | 2026-11-15 | Daily project update
+838f36d | 2026-11-15 | Agent host session e1987750-13d3-4e9e-98f4-55667b17757b - turn 1
+743763a | 2026-11-15 | Agent host session e1987750-13d3-4e9e-98f4-55667b17757b - turn 1 start
+b0ae8d8 | 2026-11-15 | Agent host session e1987750-13d3-4e9e-98f4-55667b17757b - baseline checkpoint
+fbf8af8 | 2026-11-15 | Update portfolio website
+ed2c488 | 2026-11-15 | Merge pull request #2 from Ethio-Spider/upgrade/portfolio-modernization
+7d3a158 | 2026-11-01 | Upgrade portfolio design and integration
+ecbc19e | 2026-11-01 | Modernize portfolio with React and TypeScript
+1072f8d | 2026-08-13 | Restore Projects section: revert recent project-related edits (restore index.html to previous version)
+2371e0f | 2026-08-13 | Restore projects section with proper CSS, HTML, and JavaScript styling
+7295662 | 2026-08-13 | Fix task project thumbnail path to existing pic.png
+c53317d | 2026-08-13 | Restore Task Management App description in Projects section
+c3b672e | 2026-08-13 | Fix Task Management App project card: restore full description and close paragraph
+05e7a32 | 2026-08-13 | Modernize Task Management App project card in Projects section
+83c25fa | 2026-08-13 | Update portfolio live demo link to Vercel deployment
+d200989 | 2026-08-13 | Add portfolio project with live demo and GitHub links
+36f5160 | 2026-08-13 | Slowdown animations for better user experience
+a4ad177 | 2026-08-04 | update portfolio homepage
+9a2c98f | 2026-05-26 | Update script.js
+22e018c | 2026-05-26 | Update speed of text script.js
+5262def | 2026-05-14 | Update image
+21d3209 | 2026-05-14 | Update style.css
+753d04b | 2026-05-14 | finalize autho replay
+7a06acb | 2026-05-14 | Fix contact form and auto reply
+363ab07 | 2026-05-14 | Fix EmailJS contact form
+4a522a4 | 2026-05-14 | udate my portfolio
+d904836 | 2026-05-12 | Update style.css
+248d9d1 | 2026-05-12 | Update style.css
+84c37f3 | 2026-05-12 | Configure EmailJS with your credentials - public key, service ID, and template IDs
+36e724f | 2026-05-12 | Add EmailJS integration for automatic email notifications to visitors
